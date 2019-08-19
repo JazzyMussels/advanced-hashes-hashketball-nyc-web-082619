@@ -179,13 +179,12 @@ def big_shoe_rebounds
         shoes[name] = details[:shoe]
       end 
     end 
-    big_shoe = shoes.sort_by{|k,v| v}
-    target = big_shoe[-1]
+    big_shoe = shoes.max_by{|k,v| v}[-1]
     
     game_hash.each do |location, team_data|
       players = team_data[:players]
       players.each do |details|
-        return details[:rebounds] if target.include?(details[:player_name])
+        return details[:rebounds] if big_shoe == details[:player_name]
       end 
     end
 end 
